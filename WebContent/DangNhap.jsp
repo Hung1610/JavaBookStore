@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">WebSiteName</a>
+		<ul class="navbar-nav">
+		</ul>
+	</nav>
+	<div class="card" style="padding:50px;margin:50px;width:500px;">
+		<div class="row">
+			<div class="col-md-6">
+				<form method="post" action="ktController">
+					Username <input type="text" name="username" value=""> <br>
+					Password <input type="password" name="pass" value=""> <br>
+					<input class="btn btn-default" type="submit" name="btn" value="Dang nhap">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
