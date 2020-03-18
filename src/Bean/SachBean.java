@@ -10,7 +10,16 @@ public class SachBean {
 	private String anh;
 	private String ngayNhap;
 	private String maLoai;
+	private String theLoai;
 	
+	public String getTheLoai() {
+		return theLoai;
+	}
+
+	public void setTheLoai(String theLoai) {
+		this.theLoai = theLoai;
+	}
+
 	public SachBean() {
 		super();
 	}

@@ -26,6 +26,9 @@ jQuery(document).ready(function() {
     	});
     	
     });
-    
-    
 });
+
+
+function openModal(modalId){
+	$('#'+modalId).modal('show');
+}

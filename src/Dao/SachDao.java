@@ -11,7 +11,7 @@ public class SachDao {
 	public ArrayList<SachBean> getSach () throws Exception {
 		ArrayList<SachBean> ds = new ArrayList<SachBean>();		
 		dc.KetNoi();
-		String sql = "SELECT * FROM sach";
+		String sql = "SELECT sach.*, tenloai FROM sach INNER JOIN loai ON loai.maloai = sach.maloai";
 		PreparedStatement cmd = dc.cn.prepareStatement(sql);
 		ResultSet rs = cmd.executeQuery();
 		while (rs.next()) {
@@ -25,6 +25,7 @@ public class SachDao {
 			String ngayNhap = rs.getString("ngaynhap");
 			String maLoai = rs.getString("maloai");
 			SachBean bean = new SachBean(maSach, tenSach, tacGia, gia, soLuong, soTap, anh, ngayNhap, maLoai);
+			bean.setTheLoai(rs.getString("tenloai"));
 			ds.add(bean);
 		}
 		rs.close();
@@ -35,7 +36,7 @@ public class SachDao {
 	public ArrayList<SachBean> getSachByLoai (String maLoai) throws Exception {
 		ArrayList<SachBean> ds = new ArrayList<SachBean>();		
 		dc.KetNoi();
-		String sql = "SELECT * FROM sach INNER JOIN loai ON loai.maloai = sach.maloai WHERE loai.maloai=?";
+		String sql = "SELECT sach.*, tenloai FROM sach INNER JOIN loai ON loai.maloai = sach.maloai WHERE loai.maloai=?";
 		PreparedStatement cmd = dc.cn.prepareStatement(sql);
 		cmd.setString(1, maLoai);
 		ResultSet rs = cmd.executeQuery();
@@ -49,6 +50,7 @@ public class SachDao {
 			String anh = rs.getString("anh");
 			String ngayNhap = rs.getString("ngaynhap");
 			SachBean bean = new SachBean(maSach, tenSach, tacGia, gia, soLuong, soTap, anh, ngayNhap, maLoai);
+			bean.setTheLoai(rs.getString("tenloai"));
 			ds.add(bean);
 		}
 		rs.close();
@@ -58,7 +60,7 @@ public class SachDao {
 	
 	public SachBean getSachByMa (String maSach) throws Exception {	
 		dc.KetNoi();
-		String sql = "SELECT * FROM sach WHERE masach = ?";
+		String sql = "SELECT sach.*, tenloai FROM sach INNER JOIN loai ON loai.maloai = sach.maloai WHERE masach = ?";
 		PreparedStatement cmd = dc.cn.prepareStatement(sql);
 		cmd.setString(1, maSach);
 		ResultSet rs = cmd.executeQuery();
@@ -73,6 +75,7 @@ public class SachDao {
 			String ngayNhap = rs.getString("NgayNhap");
 			String maLoai = rs.getString("maloai");
 			bean = new SachBean(maSach, tenSach, tacGia, gia, soLuong, soTap, anh, ngayNhap, maLoai);
+			bean.setTheLoai(rs.getString("tenloai"));
 		}
 		rs.close();
 		dc.cn.close();

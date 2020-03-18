@@ -55,7 +55,7 @@
 			if (request.getAttribute("kqThem") != null) {
 				out.print("<script>alert('Trùng mã!')</script>");
 			}
-			SachBean sachChon = (SachBean) request.getAttribute("sachChon");
+			SachBean sbean = (SachBean) request.getAttribute("bean");
 		%>
 		<!-- =============================================== -->
 
@@ -73,7 +73,7 @@
 				<div>
 
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#addModal">Chi tiết sách</button>
+						data-target="#addModal">Thêm sách</button>
 					<div class="box">
 						<div class="box-body">
 							<table class="table mt-3">
@@ -99,12 +99,100 @@
 										<td><%=bean.getTacGia()%></td>
 										<td><%=bean.getGia()%></td>
 										<td><%=bean.getSoLuong()%></td>
-										<td class="d-flex"><a
-											href="AdminBooks?maChon=<%=bean.getMaSach()%>"
-											class="btn btn-primary mr-2">Chi tiết</a> <a
-											href="AdminBooks?maXoa=<%=bean.getMaSach()%>"
-											class="btn btn-danger">Xóa</a></td>
+										<td class="d-flex">
+
+											<button type="button" class="btn btn-primary"
+												data-toggle="modal"
+												data-target="#addModal<%=bean.getMaSach()%>">Chi
+												tiết</button>
+											<a href="AdminBooks?maXoa=<%=bean.getMaSach()%>"
+											class="btn btn-danger">Xóa</a>
+										</td>
 									</tr>
+
+									<div class="modal fade" id="addModal<%=bean.getMaSach()%>"
+										tabindex="-1" role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">Chi tiết sách</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<form method="post" action="AdminBooks"
+														enctype="multipart/form-data">
+														<label>Mã sách</label> <input type="text" name="txtMaSach"
+															value="<%if (bean != null)
+					out.print(bean.getMaSach());%>"
+															class="form-control"> <br> <label>Tên
+															sách</label> <input type="text" name="txtTenSach"
+															value="<%if (bean != null)
+					out.print(bean.getTenSach());%>"
+															class="form-control"> <br> <label>Tác
+															giả</label> <input type="text" name="txtTacGia"
+															value="<%if (bean != null)
+					out.print(bean.getTacGia());%>"
+															class="form-control"> <br> <label>Giá</label>
+														<input type="number" name="txtGia"
+															value="<%if (bean != null)
+					out.print(bean.getGia());%>"
+															class="form-control"> <br> <label>Số
+															lượng</label> <input type="number" name="txtSoLuong"
+															value="<%if (bean != null)
+					out.print(bean.getSoLuong());%>"
+															class="form-control"> <br> <label>Ngày
+															nhập</label> <input type="date" name="txtNgayNhap"
+															value="<%if (bean != null) {
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					Date d1 = df.parse(bean.getNgayNhap());
+					SimpleDateFormat y = new SimpleDateFormat("yyyy");
+					String year = y.format(d1);
+					SimpleDateFormat m = new SimpleDateFormat("MM");
+					String month = m.format(d1);
+					SimpleDateFormat d = new SimpleDateFormat("dd");
+					String date = d.format(d1);
+					out.print(year + "-" + month + "-" + date);
+				}%>"
+															class="form-control"> <br> <label>Ảnh</label>
+														<%
+															if (bean != null) {
+														%>
+														<img alt="anh" width="200px"
+															src="<%out.print(bean.getAnh());%>">
+														<%
+															}
+														%>
+														<input type="file" name="txtfile" class="form-control"><br>
+														<label>Số tập</label> <input type="text" name="txtSoTap"
+															value="<%if (bean != null)
+					out.print(bean.getSoTap());%>"
+															class="form-control"> <br> <label>Loại</label>
+														<select name="cbbMaLoai" class="form-control">
+															<%
+																ArrayList<LoaiBean> dsLoai = (ArrayList<LoaiBean>) request.getAttribute("dsLoai");
+																	for (int j = 0; j < dsLoai.size(); j++) {
+																		LoaiBean lbean = dsLoai.get(j);
+															%>
+															<option value="<%=lbean.getMaLoai()%>"
+																<%if (lbean != null)
+						if (bean.getMaLoai().equals(lbean.getMaLoai()))
+							out.print("selected");%>>
+																<%=lbean.getTenLoai()%>
+															</option>
+															<%
+																}
+															%>
+														</select> <br> <input
+															type="submit" name="btnSua" value="Sửa"
+															class="btn btn-primary"> <br>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
 									<%
 										}
 									%>
@@ -113,88 +201,64 @@
 						</div>
 					</div>
 				</div>
-				<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Modal title</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form method="post" action="AdminBooks"
-									enctype="multipart/form-data">
-									<label>Mã sách</label> <input type="text" name="txtMaSach"
-										value="<%if (sachChon != null)
-				out.print(sachChon.getMaSach());%>"
-										class="form-control"> <br> <label>Tên
-										sách</label> <input type="text" name="txtTenSach"
-										value="<%if (sachChon != null)
-				out.print(sachChon.getTenSach());%>"
-										class="form-control"> <br> <label>Tác giả</label>
-									<input type="text" name="txtTacGia"
-										value="<%if (sachChon != null)
-				out.print(sachChon.getTacGia());%>"
-										class="form-control"> <br> <label>Giá</label> <input
-										type="number" name="txtGia"
-										value="<%if (sachChon != null)
-				out.print(sachChon.getGia());%>"
-										class="form-control"> <br> <label>Số
-										lượng</label> <input type="number" name="txtSoLuong"
-										value="<%if (sachChon != null)
-				out.print(sachChon.getSoLuong());%>"
-										class="form-control"> <br> <label>Ngày
-										nhập</label> <input type="date" name="txtNgayNhap"
-										value="<%if (sachChon != null) {
-				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-				Date d1 = df.parse(sachChon.getNgayNhap());
-				SimpleDateFormat y = new SimpleDateFormat("yyyy");
-				String year = y.format(d1);
-				SimpleDateFormat m = new SimpleDateFormat("MM");
-				String month = m.format(d1);
-				SimpleDateFormat d = new SimpleDateFormat("dd");
-				String date = d.format(d1);
-				out.print(year + "-" + month + "-" + date);
-			}%>"
-										class="form-control"> <br> <label>Ảnh</label>
-									<%
-										if (sachChon != null) {
-									%>
-									<img alt="anh" width="200px"
-										src="<%out.print(sachChon.getAnh());%>">
-									<%
-										}
-									%>
-									<input type="file" name="txtfile" class="form-control"><br>
-									<label>Số tập</label> <input type="text" name="txtSoTap"
-										value="<%if (sachChon != null)
-				out.print(sachChon.getSoTap());%>"
-										class="form-control"> <br> <label>Loại</label> <select
-										name="cbbMaLoai" class="form-control">
-										<%
-											ArrayList<LoaiBean> dsLoai = (ArrayList<LoaiBean>) request.getAttribute("dsLoai");
-											for (int i = 0; i < dsLoai.size(); i++) {
-												LoaiBean bean = dsLoai.get(i);
-										%>
-										<option value="<%=bean.getMaLoai()%>"
-											<%if (sachChon != null)
-					if (bean.getMaLoai().equals(sachChon.getMaLoai()))
-						out.print("selected");%>>
-											<%=bean.getTenLoai()%>
-										</option>
-										<%
-											}
-										%>
-									</select> <br> <input type="submit" name="btnThem" value="Thêm"
-										class="btn btn-primary"> <input type="submit"
-										name="btnSua" value="Sửa" class="btn btn-primary"> <br>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
+									<div class="modal fade" id="addModal"
+										tabindex="-1" role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">Thêm sách</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<form method="post" action="AdminBooks"
+														enctype="multipart/form-data">
+														<label>Mã sách</label> <input type="text" name="txtMaSach"
+															value=""
+															class="form-control"> <br> <label>Tên
+															sách</label> <input type="text" name="txtTenSach"
+															value=""
+															class="form-control"> <br> <label>Tác
+															giả</label> <input type="text" name="txtTacGia"
+															value=""
+															class="form-control"> <br> <label>Giá</label>
+														<input type="number" name="txtGia"
+															value=">"
+															class="form-control"> <br> <label>Số
+															lượng</label> <input type="number" name="txtSoLuong"
+															value=""
+															class="form-control"> <br> <label>Ngày
+															nhập</label> <input type="date" name="txtNgayNhap"
+															value=""
+															class="form-control"> <br> <label>Ảnh</label>
+														<img alt="anh" width="200px"
+															src="">
+														<input type="file" name="txtfile" class="form-control"><br>
+														<label>Số tập</label> <input type="text" name="txtSoTap"
+															value=""
+															class="form-control"> <br> <label>Loại</label>
+														<select name="cbbMaLoai" class="form-control">
+															<%
+																ArrayList<LoaiBean> dsLoai = (ArrayList<LoaiBean>) request.getAttribute("dsLoai");
+																	for (int j = 0; j < dsLoai.size(); j++) {
+																		LoaiBean lbean = dsLoai.get(j);
+															%>
+															<option value="<%=lbean.getMaLoai()%>"
+																>
+																<%=lbean.getTenLoai()%>
+															</option>
+															<%
+																}
+															%>
+														</select> <br> <input type="submit" name="btnThem"
+															value="Thêm" class="btn btn-primary"> <br>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
 			</section>
 			<!-- /.content -->
 		</div>
@@ -209,181 +273,6 @@
 			</strong> All rights reserved.
 		</footer>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li><a href="#control-sidebar-home-tab" data-toggle="tab"><i
-						class="fa fa-home"></i></a></li>
-
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
-						class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:void(0)"> <i
-								class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-									<p>Will be 23 on April 24th</p>
-								</div>
-						</a></li>
-						<li><a href="javascript:void(0)"> <i
-								class="menu-icon fa fa-user bg-yellow"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Frodo Updated His
-										Profile</h4>
-
-									<p>New phone +1(800)555-1234</p>
-								</div>
-						</a></li>
-						<li><a href="javascript:void(0)"> <i
-								class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Nora Joined Mailing
-										List</h4>
-
-									<p>nora@example.com</p>
-								</div>
-						</a></li>
-						<li><a href="javascript:void(0)"> <i
-								class="menu-icon fa fa-file-code-o bg-green"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Cron Job 254
-										Executed</h4>
-
-									<p>Execution time 5 seconds</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design <span
-										class="label label-danger pull-right">70%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger"
-										style="width: 70%"></div>
-								</div>
-						</a></li>
-						<li><a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Update Resume <span class="label label-success pull-right">95%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-success"
-										style="width: 95%"></div>
-								</div>
-						</a></li>
-						<li><a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Laravel Integration <span
-										class="label label-warning pull-right">50%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-warning"
-										style="width: 50%"></div>
-								</div>
-						</a></li>
-						<li><a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-									Back End Framework <span class="label label-primary pull-right">68%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-primary"
-										style="width: 68%"></div>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
-					Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Report panel
-								usage <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Some information about this general settings option</p>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Allow mail
-								redirect <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Other sets of options are available</p>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Expose author
-								name in posts <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Allow the user to show his name in blog posts</p>
-						</div>
-						<!-- /.form-group -->
-
-						<h3 class="control-sidebar-heading">Chat Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Show me as
-								online <input type="checkbox" class="pull-right" checked>
-							</label>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Turn off
-								notifications <input type="checkbox" class="pull-right">
-							</label>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Delete chat
-								history <a href="javascript:void(0)" class="text-red pull-right"><i
-									class="fa fa-trash-o"></i></a>
-							</label>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>
 	</div>
 	<!-- ./wrapper -->
 
@@ -410,7 +299,11 @@
 					width : '10%',
 					targets : 'all'
 				} ],
-				autoWidth : false
+				autoWidth : false,
+		        dom: 'Bfrtip',
+		        buttons: [
+		            'copy', 'csv', 'excel', 'pdf', 'print'
+		        ]
 			});
 		})
 	</script>
