@@ -35,14 +35,14 @@
 								<div class="col-12">
 									<form method="post" action="ktController">
 										<div class="form-group">
-											<label for="username">Username</label> <input type="text"
+											<label for="username">Tên đăng nhập</label> <input type="text"
 												name="username" class="form-control" id="username"
-												aria-describedby="userHelp" placeholder="Enter username">
+												aria-describedby="userHelp" placeholder="Nhập tên đăng nhập">
 										</div>
 										<div class="form-group">
-											<label for="pass">Password</label> <input type="password"
+											<label for="pass">Mật khẩu</label> <input type="password"
 												name="pass" class="form-control" id="pass"
-												placeholder="Password">
+												placeholder="Nhập mật khẩu">
 										</div>
 										<div class="row">
 											<div class="col-12 text-center">

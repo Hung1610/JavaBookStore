@@ -37,32 +37,32 @@
 										<div class="form-group">
 											<label for="hoten">Họ tên</label> <input type="text"
 												name="hoten" class="form-control" id="hoten"
-												aria-describedby="userHelp" placeholder="Enter name">
+												aria-describedby="userHelp" placeholder="Nhập họ tên">
 										</div>
 										<div class="form-group">
 											<label for="diachi">Địa chỉ</label> <input type="text"
 												name="diachi" class="form-control" id="diachi"
-												aria-describedby="userHelp" placeholder="Enter address">
+												aria-describedby="userHelp" placeholder="Nhập địa chỉ">
 										</div>
 										<div class="form-group">
 											<label for="sodt">Số điện thoại</label> <input type="text"
 												name="sodt" class="form-control" id="sodt"
-												aria-describedby="userHelp" placeholder="Enter phone number">
+												aria-describedby="userHelp" placeholder="Nhập số đt">
 										</div>
 										<div class="form-group">
 											<label for="email">Email</label> <input type="text"
 												name="email" class="form-control" id="email"
-												aria-describedby="userHelp" placeholder="Enter email">
+												aria-describedby="userHelp" placeholder="Nhập email">
 										</div>
 										<div class="form-group">
-											<label for="tendn">Username</label> <input type="text"
+											<label for="tendn">Tên đăng nhập</label> <input type="text"
 												name="tendn" class="form-control" id="tendn"
-												aria-describedby="userHelp" placeholder="Enter username">
+												aria-describedby="userHelp" placeholder="Nhập tên đăng nhập">
 										</div>
 										<div class="form-group">
-											<label for="pass">Password</label> <input type="password"
+											<label for="pass">Mật khẩu</label> <input type="password"
 												name="pass" class="form-control" id="pass"
-												placeholder="Password">
+												placeholder="Nhập mật khẩu">
 										</div>
 										<div class="row">
 											<div class="col-12 text-center">
