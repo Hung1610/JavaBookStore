@@ -234,18 +234,6 @@
 							}
 						%>
 					</div>
-					Trang 1/3;
-					<div class="MenuTrang">
-						<div class="pagination-container">
-							<ul class="pagination">
-								<li class="active"><a>1</a></li>
-								<li><a href="/BookStore?page=2">2</a></li>
-								<li><a href="/BookStore?page=3">3</a></li>
-								<li class="PagedList-skipToNext"><a
-									href="/BookStore?page=2" rel="next">»</a></li>
-							</ul>
-						</div>
-					</div>
 					<style>
 .MenuTrang li {
 	display: inline;
