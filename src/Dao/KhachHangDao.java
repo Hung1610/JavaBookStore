@@ -29,4 +29,19 @@ public class KhachHangDao {
 		dc.cn.close();
 		return ds;
 	}	
+
+	
+	public int them (String hoten, String diachi, String sodt, String email, String tendn, String pass) throws Exception {
+		dc.KetNoi();
+			String sql = "INSERT INTO khachhang(hoten, diachi, sodt, email, tendn, pass) values (?,?,?,?,?,?)";
+			PreparedStatement cmd = dc.cn.prepareStatement(sql);
+			cmd.setString(1, diachi);
+			cmd.setString(2, sodt);
+			cmd.setString(3, email);
+			cmd.setString(4, tendn);
+			cmd.setString(5, pass);
+			int kq = cmd.executeUpdate();
+			dc.cn.close();
+			return kq;
+	}
 }

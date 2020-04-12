@@ -17,7 +17,7 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">Mục quản lý</li>
             <li><a href="AdminOrders"><i class="fa fa-circle-o"></i> Danh sách hóa đơn</a></li>
             <li><a href="AdminBooks"><i class="fa fa-circle-o"></i> Danh sách sách </a></li>
             <li><a href="AdminTypesList"><i class="fa fa-circle-o"></i> Danh sách loại sách </a></li>

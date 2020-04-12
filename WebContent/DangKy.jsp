@@ -28,15 +28,35 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-12">
-									<h5 class="card-title">Login</h5>
+									<h5 class="card-title">Register</h5>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-12">
 									<form method="post" action="ktController">
 										<div class="form-group">
-											<label for="username">Username</label> <input type="text"
-												name="username" class="form-control" id="username"
+											<label for="hoten">Họ tên</label> <input type="text"
+												name="hoten" class="form-control" id="hoten"
+												aria-describedby="userHelp" placeholder="Enter name">
+										</div>
+										<div class="form-group">
+											<label for="diachi">Địa chỉ</label> <input type="text"
+												name="diachi" class="form-control" id="diachi"
+												aria-describedby="userHelp" placeholder="Enter address">
+										</div>
+										<div class="form-group">
+											<label for="sodt">Số điện thoại</label> <input type="text"
+												name="sodt" class="form-control" id="sodt"
+												aria-describedby="userHelp" placeholder="Enter phone number">
+										</div>
+										<div class="form-group">
+											<label for="email">Email</label> <input type="text"
+												name="email" class="form-control" id="email"
+												aria-describedby="userHelp" placeholder="Enter email">
+										</div>
+										<div class="form-group">
+											<label for="tendn">Username</label> <input type="text"
+												name="tendn" class="form-control" id="tendn"
 												aria-describedby="userHelp" placeholder="Enter username">
 										</div>
 										<div class="form-group">
@@ -47,13 +67,13 @@
 										<div class="row">
 											<div class="col-12 text-center">
 												<button type="submit" class="btn btn-light btn-block"
-													name="btn" value="Dang nhap">Đăng nhập</button>
+													name="btn" value="register">Đăng ký</button>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-12 text-center">
-												<a href="/Sach/DangKyController" class="btn btn-light btn-block"
-													name="btn" value="register">Register</a>
+												<a href="/Sach/ktController" class="btn btn-light btn-block"
+													name="btn" value="register"><-- Back</a>
 											</div>
 										</div>
 									</form>

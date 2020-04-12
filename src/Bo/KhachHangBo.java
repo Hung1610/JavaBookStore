@@ -21,4 +21,8 @@ KhachHangDao dao = new KhachHangDao();
 		}
 		return null;
 	}
+	
+	public int them (String hoten, String diachi, String sodt, String email, String tendn, String pass) throws Exception {
+		return dao.them(hoten, diachi, sodt, email, tendn, pass);
+	}
 }

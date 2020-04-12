@@ -28,7 +28,7 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="IndexController">Website Name</a>
+         <a class="navbar-brand" href="IndexController">Nhà sách</a>
      </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -74,6 +74,7 @@
 	<table class="table">
 		<thead class="thead-dark">
 		    <tr>
+		      <th scope="col">Mã hóa đơn</th>
 		      <th scope="col">Ngày Mua</th>
 		      <th scope="col">Trạng Thái</th>
 		      <th scope="col"></th>
@@ -83,6 +84,7 @@
 		<%ArrayList<HoaDonBean> ds = (ArrayList<HoaDonBean>) request.getAttribute("ds");
 			for (HoaDonBean hd: ds) {%>
 				<tr>
+					<td><%=hd.getMaHD() %></td>
 					<td><%=hd.getDate() %></td>
 					<td><% if(hd.isDaMua()==true) out.print("Đã chuyển tiền"); else out.print("Chưa chuyển tiền"); %></td>
 					<th scope="row"><a class="btn btn-info" href="LichSuCTController?maHD=<%=hd.getMaHD() %>">Chi tiết</a></th>
