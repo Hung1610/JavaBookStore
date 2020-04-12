@@ -28,7 +28,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-12">
-									<h5 class="card-title">Login</h5>
+									<h5 class="card-title">Đăng nhập</h5>
 								</div>
 							</div>
 							<div class="row">
@@ -53,7 +53,7 @@
 										<div class="row">
 											<div class="col-12 text-center">
 												<a href="/Sach/DangKyController" class="btn btn-light btn-block"
-													name="btn" value="register">Register</a>
+													name="btn" value="register">Đăng ký</a>
 											</div>
 										</div>
 									</form>

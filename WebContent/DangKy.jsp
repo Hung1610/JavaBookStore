@@ -28,7 +28,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-12">
-									<h5 class="card-title">Register</h5>
+									<h5 class="card-title">Đăng ký</h5>
 								</div>
 							</div>
 							<div class="row">
@@ -73,7 +73,7 @@
 										<div class="row">
 											<div class="col-12 text-center">
 												<a href="/Sach/ktController" class="btn btn-light btn-block"
-													name="btn" value="register"><-- Back</a>
+													name="btn" value="register"><-- Trở lại</a>
 											</div>
 										</div>
 									</form>
